@@ -1,7 +1,7 @@
 {
   "name": "image-memo",
-  "displayName": "image-memo",
-  "description": "",
+  "displayName": "image memo",
+  "description": "An image host tool",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.55.0"
