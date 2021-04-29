@@ -2,24 +2,103 @@
   "name": "image-memo",
   "displayName": "image memo",
   "description": "An image host tool",
+  "keywords": ["image", "host"],
   "version": "0.0.1",
+  "author": "JacobCN",
+  "license": "MIT",
+  "publisher": "JacobCN",
   "engines": {
     "vscode": "^1.55.0"
   },
   "categories": [
     "Other"
   ],
+  "icon": "./images/icon.jpg",
   "activationEvents": [
     "onCommand:image-memo.helloWorld"
   ],
   "main": "./src/extension.js",
   "contributes": {
+    "configuration":{
+      "type": "object",
+      "title": "Image Memo",
+      "properties": {
+        "imageMemo.serverConfiguration": {
+          "scope": "resource",
+          "type": "object",
+          "default": {
+            "database": "MySQL",
+            "server host": "localhost",
+            "port": "3306",
+            "database name": "",
+            "charset": "utf8mb4"
+          },
+					"properties": {
+            "database": {
+              "type": "string",
+              "enum": ["MySQL", "MS SQL Server"],
+              "default": "MySQL",
+              "description": "Select an database type"
+            },
+            "server host": {
+              "type":"string",
+              "default":"localhost",
+              "description": "Server Host"
+            },
+            "port": {
+              "type": "string",
+              "default": "3306",
+              "description": "database server port"
+            },
+            "charset": {
+              "type": "string",
+              "description": "database charset"
+            }
+					},
+					"additionalProperties": false
+        },
+        "imageMemo.authentication": {
+          "type": "object",
+          "scope": "window",
+          "default": {
+            "username": "root",
+            "password": "root"
+          },
+          "properties": {
+            "username": {
+              "type": "string",
+              "description": "database username"
+            },
+            "password": {
+              "type": "string",
+              "description": "database password"
+            }
+          },
+          "additionalProperties": false
+        }
+      }
+    },
     "commands": [
       {
         "command": "image-memo.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "children",
+          "title": "美女帅哥",
+          "icon": "./images/icon.jpg"
+        }
+      ]
+    },
+    "views": {
+      "children":[
+        {"id": "child1", "name": "女孩"},
+        {"id": "child2", "name": "男孩"}
+      ]
+    }
   },
   "scripts": {
     "lint": "eslint .",
