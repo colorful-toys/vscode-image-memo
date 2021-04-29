@@ -1,6 +1,6 @@
-# vscode-image-memo README
+# image-memo README
 
-This is the README for your extension "vscode-image-memo". After writing up a brief description, we recommend including the following sections.
+This is the README for your extension "image-memo". After writing up a brief description, we recommend including the following sections.
 
 ## Features
 

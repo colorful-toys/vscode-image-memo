@@ -1,6 +1,6 @@
 {
-  "name": "vscode-image-memo",
-  "displayName": "vscode-image-memo",
+  "name": "image-memo",
+  "displayName": "image-memo",
   "description": "",
   "version": "0.0.1",
   "engines": {
@@ -10,13 +10,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:vscode-image-memo.helloWorld"
+    "onCommand:image-memo.helloWorld"
   ],
-  "main": "./extension.js",
+  "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "vscode-image-memo.helloWorld",
+        "command": "image-memo.helloWorld",
         "title": "Hello World"
       }
     ]
