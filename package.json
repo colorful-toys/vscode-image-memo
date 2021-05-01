@@ -15,7 +15,8 @@
   ],
   "icon": "./images/icon.jpg",
   "activationEvents": [
-    "onCommand:image-memo.helloWorld"
+    "onCommand:image-memo.helloWorld",
+    "onView:viewId:image-memo.helloworld"
   ],
   "main": "./src/extension.js",
   "contributes": {
@@ -23,9 +24,50 @@
       "type": "object",
       "title": "Image Memo",
       "properties": {
-        "imageMemo.serverConfiguration": {
+        "imageMemo.authentication": {
+          "type": "object",
+          "scope": "window",
+          "description": "Auth info of database server and image host server.",
+          "default": {
+            "database auth type": "Database",
+            "database username": "root",
+            "database password": "",
+            "image host login type": "Basic",
+            "image host username": "username",
+            "image host password": ""
+          },
+          "properties": {
+            "database auth type": {
+              "type": "string",
+              "enum": ["Anonymous", "Database"]
+            },
+            "database username": {
+              "type": "string",
+              "description": "database username"
+            },
+            "database password": {
+              "type": "string",
+              "description": "database password"
+            },
+            "image host login type": {
+              "type": "string",
+              "enum": ["Anonymous", "Basic", "Auth 2.0" ]
+            },
+            "image host username": {
+              "type": "string",
+              "description": "image host login username"
+            },
+            "image host password": {
+              "type": "string",
+              "description": "image host login password"
+            }
+          },
+          "additionalProperties": false
+        },
+        "imageMemo.databaseServer": {
           "scope": "resource",
           "type": "object",
+          "description": "Info of the images uploaded to the image host will store to this database.",
           "default": {
             "database": "MySQL",
             "server host": "localhost",
@@ -57,21 +99,19 @@
 					},
 					"additionalProperties": false
         },
-        "imageMemo.authentication": {
+        "imageMemo.imageHostServer": {
+          "scope": "resource",
           "type": "object",
-          "scope": "window",
+          "description": "Image host server info.",
           "default": {
-            "username": "root",
-            "password": "root"
+            "host type": "SM.MS"
           },
           "properties": {
-            "username": {
+            "host type": {
               "type": "string",
-              "description": "database username"
-            },
-            "password": {
-              "type": "string",
-              "description": "database password"
+              "enum": ["SM.MS"],
+              "default": "SM.MS",
+              "description": "Image Host Server https://sm.ms"
             }
           },
           "additionalProperties": false
@@ -87,16 +127,25 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "children",
-          "title": "美女帅哥",
+          "id": "imageHost-view",
+          "title": "Image Host",
           "icon": "./images/icon.jpg"
         }
       ]
     },
     "views": {
-      "children":[
-        {"id": "child1", "name": "女孩"},
-        {"id": "child2", "name": "男孩"}
+      "imageHost-view":[
+        {
+          "id": "ihv-upload",
+          "name": "Upload Image"
+        },
+        {
+          "id": "ihv-albumes",
+          "name": "Albumes"
+        },
+        {
+          "id": "ihv-import",
+          "name": "Import to Default Album"}
       ]
     }
   },
