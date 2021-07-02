@@ -22,13 +22,29 @@ function activate(context) {
 
 		// Display a message box to the user
 		vscode.window.showInformationMessage('Hello World from image-memo!');
+		vscode.window.showErrorMessage('');
+		const con = vscode.workspace.getConfiguration("contributes");
+		console.log(con);
+		const panel = vscode.window.createWebviewPanel(
+			"image-memo-test",
+			"Image Memo Test View",
+			vscode.ViewColumn.One,
+			{
+				enableScripts: true,
+				retainContextWhenHidden: true
+			}
+		)
+		panel.webview.html = '<html><body><h1>你好</h1></body></html>';
+		console.log('hello');
 	});
 
 	context.subscriptions.push(disposable);
 }
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() {
+	console.log("image memo is deactived.");
+}
 
 module.exports = {
 	activate,
